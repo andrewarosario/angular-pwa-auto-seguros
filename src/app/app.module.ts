@@ -8,11 +8,15 @@ import { environment } from '../environments/environment';
 
 import { SuiModule } from 'ng2-semantic-ui';
 import { MenuComponent } from './components/menu/menu.component';
+import { CadastroSegurosComponent } from './components/cadastro-seguros/cadastro-seguros.component';
+import { ListarSegurosComponent } from './components/listar-seguros/listar-seguros.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    CadastroSegurosComponent,
+    ListarSegurosComponent
   ],
   imports: [
     BrowserModule,
