@@ -11,7 +11,7 @@ export class CarroService {
   constructor(private http: HttpClient) {
   }
 
-  getMarcasCarro(): Observable<any> {
+  getMarcas(): Observable<any> {
     return this.http.jsonp(environment.API_CARROS + 'cmd=getMakes', 'callback');
   }
 
