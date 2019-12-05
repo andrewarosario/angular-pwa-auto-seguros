@@ -18,8 +18,17 @@ export class CadastroSegurosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.carroService.getMarcasCarro()
-      .subscribe(res => console.log(res));
+    this.carregarMarcasDeCarro();
+  }
+
+  carregarMarcasDeCarro() {
+    this.carroService.getMarcas()
+      .subscribe(res => {
+        this.marcasCarro = res.Makes.map(m => ({
+          codigo: m.make_id,
+          nome: m.make_display
+        }));
+      });
   }
 
 }

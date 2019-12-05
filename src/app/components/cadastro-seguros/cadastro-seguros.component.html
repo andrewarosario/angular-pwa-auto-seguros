@@ -1,1 +1,42 @@
-<p>cadastro-seguros works!</p>
+<div class="ui card main-form">
+  <div class="content">
+    <div class="header">Cadastrar Seguro</div>
+  </div>
+  <div class="content">
+    <div class="ui large form equal width stackable grid">
+
+      <!-- DADOS DO CARRO -->
+      <div class="three column row">
+        <div class="column field">
+          <label for="carroModel">Marca do Carro</label>
+          <sui-select
+            class="selection"
+            [(ngModel)]="seguro.marcaCarro"
+            [options]="marcasCarro"
+            labelField="nome"
+            placeholder="Buscar Marca..."
+            [isSearchable]="true"
+            #carroModelSelect
+            >
+            <sui-select-option *ngFor="let option of carroModelSelect.filteredOptions" [value]="option">
+            </sui-select-option>
+          </sui-select>
+        </div>
+
+        <div class="column field">
+          <label for="modeloCarro">Modelo do Carro</label>
+          <input type="text" id="modeloCarro" name="modeloCarro"
+            placeholder="Modelo do Carro" [(ngModel)]="seguro.modeloCarro"/>
+        </div>
+
+        <div class="column field">
+          <label for="placaCarro">Placa do Carro</label>
+          <input type="text" id="placaCarro" name="placaCarro"
+            placeholder="Placa do Carro" [(ngModel)]="seguro.placaCarro"/>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
