@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MarcaCarro } from 'src/app/shared/model/MarcaCarro';
+import { Seguro } from 'src/app/shared/model/Seguro';
+import { CarroService } from 'src/app/shared/services/carro.service';
 
 @Component({
   selector: 'app-cadastro-seguros',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroSegurosComponent implements OnInit {
 
-  constructor() { }
+  public marcasCarro: MarcaCarro[];
+  public seguro = new Seguro();
+
+  constructor(
+    private carroService: CarroService
+  ) { }
 
   ngOnInit() {
+    this.carroService.getMarcasCarro()
+      .subscribe(res => console.log(res));
   }
 
 }
