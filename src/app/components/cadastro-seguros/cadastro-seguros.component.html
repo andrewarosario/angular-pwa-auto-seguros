@@ -1,14 +1,16 @@
 <div class="ui card main-form">
   <div class="content">
-    <div class="header">Cadastrar Seguro</div>
+    <h1 class="header">Cadastrar Seguro</h1>
   </div>
   <div class="content">
     <div class="ui large form equal width stackable grid">
 
       <!-- DADOS DO CARRO -->
+      <h3 class="title">Dados do Carro</h3>
+
       <div class="three column row">
         <div class="column field">
-          <label for="carroModel">Marca do Carro</label>
+          <label for="carroModel">Marca</label>
           <sui-select
             class="selection"
             [(ngModel)]="seguro.marcaCarro"
@@ -24,17 +26,48 @@
         </div>
 
         <div class="column field">
-          <label for="modeloCarro">Modelo do Carro</label>
+          <label for="modeloCarro">Modelo</label>
           <input type="text" id="modeloCarro" name="modeloCarro"
-            placeholder="Modelo do Carro" [(ngModel)]="seguro.modeloCarro"/>
+            placeholder="Modelo" [(ngModel)]="seguro.modeloCarro"/>
         </div>
 
         <div class="column field">
-          <label for="placaCarro">Placa do Carro</label>
+          <label for="placaCarro">Placa</label>
           <input type="text" id="placaCarro" name="placaCarro"
-            placeholder="Placa do Carro" [(ngModel)]="seguro.placaCarro"/>
+            placeholder="Placa" [(ngModel)]="seguro.placaCarro"/>
         </div>
 
+      </div>
+
+      <!-- DADOS DO PROPRIETÁRIO-->
+      <h3 class="title">Dados do Proprietário</h3>
+      <div class="three column row">
+        <div class="column field">
+          <label for="nomeProprietario">Nome</label>
+          <input type="text" id="nomeProprietario" name="nomeProprietario"
+            placeholder="Nome" [(ngModel)]="seguro.proprietario.nome"
+          />
+        </div>
+
+        <div class="column field">
+          <label for="sobrenomeProprietario">Sobrenome</label>
+          <input type="text"
+            id="sobrenomeProprietario"
+            name="sobrenomeProprietario"
+            placeholder="Sobrenome"
+            [(ngModel)]="seguro.proprietario.sobrenome"
+          />
+        </div>
+
+        <div class="column field">
+          <label for="dataNascimentoProprietario">Data de Nascimento</label>
+          <input type="date"
+            id="dataNascimentoProprietario"
+            name="dataNascimentoProprietario"
+            placeholder="Data de Nascimento"
+            [(ngModel)]="seguro.proprietario.dataNascimento"
+          />
+        </div>
       </div>
 
     </div>
