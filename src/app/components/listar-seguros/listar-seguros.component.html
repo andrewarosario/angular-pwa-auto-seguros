@@ -6,7 +6,7 @@
 
       <div *ngFor="let seguro of seguros" class="claim-row">
         <div>
-          <strong>Marca e Modelo: </strong>{{ seguro.marcaCarro.nome }} - {{ seguro.modeloCarro }}
+          <strong>Marca e Modelo: </strong>{{ seguro.marcaCarro }} - {{ seguro.modeloCarro }}
         </div>
         <div>
           <strong>Proprietário: </strong>{{ seguro.proprietario.nome }} {{ seguro.proprietario.sobrenome }}
