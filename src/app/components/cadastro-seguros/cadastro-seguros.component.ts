@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MarcaCarro } from 'src/app/shared/model/MarcaCarro';
 import { Seguro } from 'src/app/shared/model/Seguro';
 import { CarroService } from 'src/app/shared/services/carro.service';
+import { SeguroService } from 'src/app/shared/services/seguro.service';
 
 @Component({
   selector: 'app-cadastro-seguros',
@@ -14,7 +15,8 @@ export class CadastroSegurosComponent implements OnInit {
   public seguro = new Seguro();
 
   constructor(
-    private carroService: CarroService
+    private carroService: CarroService,
+    private seguroService: SeguroService
   ) { }
 
   ngOnInit() {
@@ -29,6 +31,10 @@ export class CadastroSegurosComponent implements OnInit {
           nome: m.make_display
         }));
       });
+  }
+
+  salvar() {
+    this.seguroService.salvar(this.seguro);
   }
 
 }

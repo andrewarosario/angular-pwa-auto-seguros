@@ -9,20 +9,12 @@
       <h3 class="title">Dados do Carro</h3>
 
       <div class="three column row">
+
         <div class="column field">
           <label for="carroModel">Marca</label>
-          <sui-select
-            class="selection"
-            [(ngModel)]="seguro.marcaCarro"
-            [options]="marcasCarro"
-            labelField="nome"
-            placeholder="Buscar Marca..."
-            [isSearchable]="true"
-            #carroModelSelect
-            >
-            <sui-select-option *ngFor="let option of carroModelSelect.filteredOptions" [value]="option">
-            </sui-select-option>
-          </sui-select>
+          <select class="ui fluid search selection dropdown" [(ngModel)]="seguro.marcaCarro">
+            <option *ngFor="let m of marcasCarro" class="item" [value]="m.nome">{{ m.nome }}</option>
+          </select>
         </div>
 
         <div class="column field">
@@ -70,6 +62,11 @@
         </div>
       </div>
 
+    </div>
+  </div>
+  <div class="extra content">
+    <div class="row">
+      <button class="ui positive right floated button" (click)="salvar()">Salvar</button>
     </div>
   </div>
 </div>
