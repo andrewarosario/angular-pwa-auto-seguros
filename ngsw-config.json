@@ -25,5 +25,19 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "car-info-api",
+      "urls": [
+        "https://www.carqueryapi.com/api/0.3/"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 10000,
+        "maxAge": "6h",
+        "timeout": "5s"
+      }
+    }
   ]
 }
