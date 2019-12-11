@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,15 @@ export class PushNotificationService {
 
   constructor(
     private http: HttpClient,
-    private swPush: SwPush
+    private swPush: SwPush,
+    private router: Router
   ) {
 
     this.swPush.notificationClicks.subscribe((result) => {
       console.log('clicou na notificação', result);
+      if (result.action === 'listar') {
+        this.router.navigate([result.action]);
+      }
     });
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
+import { PushNotificationService } from './shared/services/push-notification.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { SwUpdate } from '@angular/service-worker';
 export class AppComponent implements OnInit {
   title = 'angular-pwa-auto-seguros';
 
-  constructor(private swUpdate: SwUpdate) {}
+  constructor(private push: PushNotificationService, private swUpdate: SwUpdate) {}
 
   ngOnInit() {
     if (this.swUpdate.isEnabled) {
@@ -19,5 +20,8 @@ export class AppComponent implements OnInit {
         }
       });
     }
+
+    this.push.adicionaPushSubscriber();
+
   }
 }
