@@ -11,7 +11,12 @@ export class PushNotificationService {
   constructor(
     private http: HttpClient,
     private swPush: SwPush
-  ) { }
+  ) {
+
+    this.swPush.notificationClicks.subscribe((result) => {
+      console.log('clicou na notificação', result);
+    });
+  }
 
   adicionaPushSubscriber() {
     this.swPush.requestSubscription({
