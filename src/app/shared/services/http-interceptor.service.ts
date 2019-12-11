@@ -6,7 +6,6 @@ import {Observable} from 'rxjs/index';
 export class HttpInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('Add Access-Control-Allow-Origin for request: ' + req.method);
 
     const headers = new HttpHeaders()
       .set('Access-Control-Allow-Origin', '*');
