@@ -3,6 +3,7 @@ import { MarcaCarro } from 'src/app/shared/model/MarcaCarro';
 import { Seguro } from 'src/app/shared/model/Seguro';
 import { CarroService } from 'src/app/shared/services/carro.service';
 import { SeguroService } from 'src/app/shared/services/seguro.service';
+import { PushNotificationService } from 'src/app/shared/services/push-notification.service';
 
 @Component({
   selector: 'app-cadastro-seguros',
@@ -16,7 +17,8 @@ export class CadastroSegurosComponent implements OnInit {
 
   constructor(
     private carroService: CarroService,
-    private seguroService: SeguroService
+    private seguroService: SeguroService,
+    private pushNotificationService: PushNotificationService
   ) { }
 
   ngOnInit() {
@@ -35,6 +37,14 @@ export class CadastroSegurosComponent implements OnInit {
 
   salvar() {
     this.seguroService.salvar(this.seguro);
+  }
+
+  habilitarNotificacoes() {
+    this.pushNotificationService.adicionaPushSubscriber();
+  }
+
+  enviarNotificacao() {
+    this.pushNotificationService.enviar();
   }
 
 }
