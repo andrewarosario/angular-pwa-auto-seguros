@@ -35,8 +35,8 @@ export class CadastroSegurosComponent implements OnInit {
       });
   }
 
-  salvar() {
-    this.seguroService.salvar(this.seguro);
+  adicionar() {
+    this.seguroService.adicionar(this.seguro);
   }
 
   enviarNotificacao() {
