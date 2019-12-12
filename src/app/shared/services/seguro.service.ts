@@ -32,46 +32,22 @@ export class SeguroService {
     onlineOfflineService.trocaConexao.subscribe(online => {
       if (online) {
         console.log('enviando os itens do IndexedDb para a API');
-        this.sendItemsFromIndexedDb();
+        this.enviarItensdoIndexedDb();
       } else {
         console.log('Offline. Salvando no IndexedDb');
       }
     });
   }
 
-  private addIndexedDb(seguro: Seguro) {
-    this.db.seguros
-      .add(seguro)
-      .then(async () => {
-        const todosSeguros: Seguro[] = await this.db.seguros.toArray();
-        console.log('saved in DB, DB is now', todosSeguros);
-      })
-      .catch(e => {
-        alert('Error: ' + e);
-      });
-  }
-
-  private async sendItemsFromIndexedDb() {
-    const todosSeguros: Seguro[] = await this.db.seguros.toArray();
-    console.log(todosSeguros);
-    todosSeguros.forEach(async (item: Seguro) => {
-      await this.salvar(item);
-      // send items to backend...
-      this.db.seguros.delete(item.placaCarro).then(() => {
-        console.log(`seguro com a placa ${item.placaCarro} sent and deleted locally`);
-      });
-    });
-  }
-
-  adicionar(seguro: Seguro) {
-    if (!this.onlineOfflineService.isOnline) {
-      this.addIndexedDb(seguro);
+  salvar(seguro: Seguro) {
+    if (this.onlineOfflineService.isOnline) {
+      this.salvarAPI(seguro);
     } else {
-      this.salvar(seguro);
+      this.salvarIndexedDb(seguro);
     }
   }
 
-  salvar(seguro: Seguro) {
+  private salvarAPI(seguro: Seguro) {
 
     console.log('mandando pra API');
     this.http.post(environment.API + '/api/seguros', seguro)
@@ -81,6 +57,29 @@ export class SeguroService {
       },
       err => console.error('Erro ao salvar seguro', err)
     );
+  }
+
+  private salvarIndexedDb(seguro: Seguro) {
+    this.db.seguros
+      .add(seguro)
+      .then(async () => {
+        const todosSeguros: Seguro[] = await this.db.seguros.toArray();
+        console.log('item salvo no IndexedDb', todosSeguros);
+      })
+      .catch(err => console.log('erro ao incluir item no IndexedDb', err));
+  }
+
+  private async enviarItensdoIndexedDb() {
+    const todosSeguros: Seguro[] = await this.db.seguros.toArray();
+    console.log(todosSeguros);
+    todosSeguros.forEach(async (item: Seguro) => {
+
+      await this.salvarAPI(item);
+
+      this.db.seguros.delete(item.placaCarro).then(() => {
+        console.log(`seguro com a placa ${item.placaCarro} deletado do IndexedDb`);
+      });
+    });
   }
 
   listar() {
