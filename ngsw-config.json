@@ -34,7 +34,7 @@
         "http://localhost:9000/*"
       ],
       "cacheConfig": {
-        "strategy": "freshness",
+        "strategy": "performance",
         "maxSize": 10000,
         "maxAge": "6h",
         "timeout": "5s"
