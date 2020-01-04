@@ -28,13 +28,13 @@ import { HttpInterceptorService } from './shared/services/http-interceptor.servi
     HttpClientJsonpModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService,
-      multi: true
-    }
-  ],
+  // providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: HttpInterceptorService,
+    //   multi: true
+    // }
+  // ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

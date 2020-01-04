@@ -1,20 +1,28 @@
 <div class="ui card lista-seguros">
-    <div class="content">
-      <div class="header">Seguros</div>
-    </div>
-    <div class="content">
-
-      <div *ngFor="let seguro of seguros" class="claim-row">
-        <div>
-          <strong>Marca e Modelo: </strong>{{ seguro.marcaCarro }} - {{ seguro.modeloCarro }}
-        </div>
-        <div>
-          <strong>Proprietário: </strong>{{ seguro.proprietario.nome }} {{ seguro.proprietario.sobrenome }}
-        </div>
-      </div>
-
-      <div *ngIf="!seguros || seguros.length === 0">
-        Não há seguros cadastrados.
-      </div>
-    </div>
+  <div class="content">
+    <div class="header">Seguros</div>
   </div>
+  <div class="content">
+
+    <ng-container *ngIf="seguros$ | async as seguros; else carregando">
+      <ng-container *ngIf="seguros.length > 0; else semSeguros">
+        <div *ngFor="let seguro of seguros" class="claim-row">
+          <div>
+            <strong>Marca e Modelo: </strong>{{ seguro.marcaCarro }} - {{ seguro.modeloCarro }}
+          </div>
+          <div>
+            <strong>Proprietário: </strong>{{ seguro.nomeProprietario }} {{ seguro.sobrenomeProprietario }}
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #carregando>
+      Carregando seguros...
+    </ng-template>
+
+    <ng-template #semSeguros>
+      Não há seguros cadastrados.
+    </ng-template>
+  </div>
+</div>

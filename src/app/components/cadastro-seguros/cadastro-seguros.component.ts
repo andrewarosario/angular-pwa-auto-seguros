@@ -4,6 +4,7 @@ import { Seguro } from 'src/app/shared/model/Seguro';
 import { CarroService } from 'src/app/shared/services/carro.service';
 import { SeguroService } from 'src/app/shared/services/seguro.service';
 import { PushNotificationService } from 'src/app/shared/services/push-notification.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cadastro-seguros',
@@ -12,7 +13,7 @@ import { PushNotificationService } from 'src/app/shared/services/push-notificati
 })
 export class CadastroSegurosComponent implements OnInit {
 
-  public marcasCarro: MarcaCarro[];
+  public marcasCarro$: Observable<MarcaCarro[]>;
   public seguro = new Seguro();
 
   constructor(
@@ -26,13 +27,7 @@ export class CadastroSegurosComponent implements OnInit {
   }
 
   carregarMarcasDeCarro() {
-    this.carroService.getMarcas()
-      .subscribe(res => {
-        this.marcasCarro = res.Makes.map(m => ({
-          codigo: m.make_id,
-          nome: m.make_display
-        }));
-      });
+    this.marcasCarro$ = this.carroService.getMarcas();
   }
 
   adicionar() {

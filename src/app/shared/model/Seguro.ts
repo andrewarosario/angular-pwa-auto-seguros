@@ -1,13 +1,11 @@
 import { MarcaCarro } from './MarcaCarro';
-import { Proprietario } from './Proprietario';
 
 export class Seguro {
   marcaCarro: MarcaCarro;
   modeloCarro: string;
   placaCarro: string;
-  proprietario: Proprietario;
+  nomeProprietario: string;
+  sobrenomeProprietario: string;
+  dataNascimentoProprietario: string;
 
-  constructor() {
-    this.proprietario = {} as Proprietario;
-  }
 }

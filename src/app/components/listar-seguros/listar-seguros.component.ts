@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Seguro } from 'src/app/shared/model/Seguro';
 import { SeguroService } from 'src/app/shared/services/seguro.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-listar-seguros',
@@ -9,12 +10,12 @@ import { SeguroService } from 'src/app/shared/services/seguro.service';
 })
 export class ListarSegurosComponent implements OnInit {
 
-  public seguros: Seguro[];
+  public seguros$: Observable<Seguro[]>;
 
   constructor(private seguroService: SeguroService) { }
 
   ngOnInit() {
-    this.seguroService.listar().subscribe(res => this.seguros = res);
+    this.seguros$ = this.seguroService.listar();
   }
 
 }
