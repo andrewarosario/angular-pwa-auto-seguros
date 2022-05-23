@@ -21,7 +21,7 @@
     "@angular/pwa": "^0.803.20",
     "@angular/router": "~8.2.14",
     "@angular/service-worker": "~8.2.14",
-    "dexie": "^2.0.4",
+    "dexie": "^3.2.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
